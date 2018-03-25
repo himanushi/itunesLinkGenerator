@@ -1,2 +1,2 @@
-# app link generator
+# itunesLinkGenerator
 iTunesのアプリとか音楽の紹介を簡単に作りたい人用のツール
