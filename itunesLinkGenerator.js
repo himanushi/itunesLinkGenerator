@@ -1,5 +1,5 @@
 /**
- * https://himakan.net/tool/
+ * https://himakan.net/tool/itunes-link-generator
  * MIT license
  */
 ;var itunesLinkGenerator = {};
@@ -14,23 +14,23 @@
   var countryCodeParam  = 'jp';
   var itunesKinds       = {
     software: [{
-      tag       : 'div',
-      className :  'itunesLinkGenerator-software-div',
+      nodeName       : 'div',
+      className :  'software-div',
       children  : [
         {
-          tag       : 'img',
+          nodeName  : 'img',
           src       : 'artworkUrl100',
-          className : 'itunesLinkGenerator-software-img',
+          className : 'software-img',
         },
         {
-          tag       : 'a',
+          nodeName  : 'a',
           innerText : 'trackName',
-          className : 'itunesLinkGenerator-software-name',
+          className : 'software-name',
         },
         {
-          tag       : 'p',
+          nodeName  : 'p',
           innerText : 'artistName',
-          className : 'itunesLinkGenerator-software-developer',
+          className : 'software-developer',
         }
       ]
     }]
@@ -65,21 +65,20 @@
     for(var i = 0; i < itunesElements.length; i++) {
       var itunesElement = itunesElements[i];
       var element = d.createElement(itunesElement.tag);
-      var innerText   = itunesElement.innerText;
 
       element.className = itunesElement.className;
 
-      if (itunesElement.tag === 'img') {
+      if (itunesElement.nodeName === 'img') {
         element.src = result[itunesElement.src];
 
-      } else if (itunesElement.tag === 'a') {
+      } else if (itunesElement.nodeName === 'a') {
         element.href      = generateUrl(result.trackViewUrl);
-        element.innerText = result[innerText];
+        element.innerText = result[itunesElement.innerText];
 
-      } else if (itunesElement.tag === 'p') {
-        element.innerText = result[innerText];
+      } else if (itunesElement.nodeName === 'p') {
+        element.innerText = result[itunesElement.innerText];
 
-      } else if (itunesElement.tag === 'div') {
+      } else if (itunesElement.nodeName === 'div') {
         recursiveAppendChild(result, itunesElement.children, element);
       }
 
